@@ -1,3 +1,5 @@
-#import TM
+from TM import *
 
-sleep(1000)
+config = load_configuration("tm_conf.json")
+test_cases = ["1", "11", "111", "1111"]
+analyze_execution(config, test_cases)
