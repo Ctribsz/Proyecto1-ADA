@@ -13,7 +13,7 @@ python main.py
 *Ejecución: Docker*
 ```sh
 docker buildx build -t fibonacci .
-docker run --rm -v "$(pwd)/images:/fibonacci/images" fibonacci
+docker run -it --rm -v "$(pwd)/images:/fibonacci/images" -e TERM=xterm fibonacci
 ```
 ---
 ## Convenciones
