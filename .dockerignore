@@ -2,3 +2,5 @@ Dockerfile
 *.md
 *.zip
 *.pdf
+.dockerignore
+.git

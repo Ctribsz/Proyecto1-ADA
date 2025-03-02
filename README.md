@@ -13,4 +13,5 @@ python main.py
 *Ejecución: Docker*
 ```sh
 docker buildx build -t fibonacci .
+sudo docker run -it fibonacci bash
 ```
