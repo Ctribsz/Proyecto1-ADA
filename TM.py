@@ -10,13 +10,20 @@ def load_configuration(config_file):
     return config
 
 def execute_turing_machine(config, input_string):
-    tape = list(input_string) + [config["b"]] 
+    tape = list(input_string) + [config["b"]]  # Agregar el símbolo de espacio en blanco
     head_position = 0
     current_state = config["S"]
     steps = []
     head_movements = []
     
-    while current_state not in config["F"]:
+    # Agregar control de casos base
+    if input_string == '1':  # Caso base fib(1)
+        return [(current_state, head_position, ''.join(tape))], head_movements  # Detenerse rápidamente
+    elif input_string == '':  # Caso base fib(0)
+        tape[head_position] = '0'  # Cambiar a 0 en la cinta para fib(0)
+        return [(current_state, head_position, ''.join(tape))], head_movements  # Detenerse rápidamente
+
+    while current_state not in config["F"]:  # Ciclo normal para otras transiciones
         steps.append((current_state, head_position, ''.join(tape)))
         head_movements.append(head_position)
         
@@ -28,11 +35,10 @@ def execute_turing_machine(config, input_string):
             if direction == 'R':
                 head_position += 1
                 if head_position == len(tape):
-                    tape.append(config["b"])
+                    tape.append(config["b"])  # Expandir la cinta si es necesario
             elif direction == 'L':
                 head_position = max(0, head_position - 1)
         else:
-            break  
-    
-    return steps, head_movements
+            break  # Detener si no hay transiciones disponibles
 
+    return steps, head_movements

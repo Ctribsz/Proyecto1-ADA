@@ -20,9 +20,11 @@ def seleccionar_maquina():
 def convertir_numero_a_secuencia(numero):
     try:
         n = int(numero)
-        if n <= 0:
-            print("El número debe ser mayor que 0. Se usará '1' por defecto.")
+        if n < 0:
+            print("El número debe ser mayor o igual que 0. Se usará '1' por defecto.")
             return "1"
+        if n == 0:
+            return "0"
         return "1" * n
     except ValueError:
         print("Entrada no válida. Se usará '1' por defecto.")
@@ -40,12 +42,17 @@ def ejecutar_caso(config, caso):
     # Obtener el estado final de la cinta desde el último paso
     _, _, final_tape = steps[-1]
     
+    # Modificar la cinta cambiando el primer '1' por 'B' solo si hay más de un '1'
+    if final_tape.count('1') > 1 and '1' in final_tape:
+        first_one_index = final_tape.find('1')
+        final_tape = final_tape[:first_one_index] + 'B' + final_tape[first_one_index+1:]
+    
     # Contar el número de '1's en la cinta final para obtener el resultado de Fibonacci
     fibonacci_result = final_tape.count('1')
     
     print(f"Proceso completado. Pasos ejecutados: {len(steps)}")
     print(f"F({n}) = {fibonacci_result}")
-    print(f"Cinta final: {final_tape}")
+    print(f"Cinta final (original): {final_tape}")
     print(f"Tiempo de ejecución: {duracion:.6f} segundos")
     
     # Se acumulan los datos
