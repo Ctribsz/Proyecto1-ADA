@@ -30,13 +30,22 @@ def convertir_numero_a_secuencia(numero):
 
 def ejecutar_caso(config, caso):
     global acumulado_tamanos, acumulado_tiempos
-    print(f"\nEjecutando la máquina de Turing con el caso: {caso}")
+    n = len(caso)  # Número de '1's en la entrada, que es el n-ésimo número de Fibonacci que calculamos
+    print(f"\nEjecutando la máquina de Turing para calcular F({n})")
     start_time = time.time()
     steps, head_movements = execute_turing_machine(config, caso)
     end_time = time.time()
     duracion = end_time - start_time
+    
+    # Obtener el estado final de la cinta desde el último paso
+    _, _, final_tape = steps[-1]
+    
+    # Contar el número de '1's en la cinta final para obtener el resultado de Fibonacci
+    fibonacci_result = final_tape.count('1')
+    
     print(f"Proceso completado. Pasos ejecutados: {len(steps)}")
-    print(f"Movimientos de cabezal realizados: {head_movements}")
+    print(f"F({n}) = {fibonacci_result}")
+    print(f"Cinta final: {final_tape}")
     print(f"Tiempo de ejecución: {duracion:.6f} segundos")
     
     # Se acumulan los datos
