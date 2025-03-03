@@ -1,3 +1,4 @@
 numpy
 matplotlib
 simple-term-menu
+networkx
