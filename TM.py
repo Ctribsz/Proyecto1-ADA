@@ -14,9 +14,12 @@ def execute_turing_machine(config, input_string):
     head_position = 0
     current_state = config["S"]
     steps = []
+    head_movements = []
     
     while current_state not in config["F"]:
         steps.append((current_state, head_position, ''.join(tape)))
+        head_movements.append(head_position)
+        
         symbol = tape[head_position]
         if current_state in config["transitions"] and symbol in config["transitions"][current_state]:
             new_state, new_symbol, direction = config["transitions"][current_state][symbol]
@@ -31,28 +34,5 @@ def execute_turing_machine(config, input_string):
         else:
             break  
     
-    return steps
-
-def analyze_execution(config, test_cases):
-    times = []
-    sizes = []
-    for case in test_cases:
-        start_time = time.time()
-        execute_turing_machine(config, case)
-        end_time = time.time()
-        times.append(end_time - start_time)
-        sizes.append(len(case))
-    
-    plt.scatter(sizes, times)
-    plt.xlabel("Valor [Input]")
-    plt.ylabel("Tiempo de Ejecución (s)")
-    plt.title("Tiempo de Ejecución de la Máquina de Turing")
-
-    output_dir = "/fibonacci/images"
-    os.makedirs(output_dir, exist_ok=True)
-    plt.savefig(os.path.join(output_dir, "execution_time.png"))
-    plt.close()
-    
-    poly_fit = np.polyfit(sizes, times, 2)
-    print("Polynomial Coefficients:", poly_fit)
+    return steps, head_movements
 
