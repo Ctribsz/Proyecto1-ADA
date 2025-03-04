@@ -41,3 +41,7 @@ docker run -it --rm -v "$(pwd)/images:/fibonacci/images" -e TERM=xterm fibonacci
 ## Diagrama de TM
 
 ![Diagrama Circular de la TM](./images/turing_machine_circular.png)
+
+## Video Demostrativo de Ejecucion
+
+![Video]("https://youtu.be/ECH0pBYLDiY")
