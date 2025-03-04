@@ -32,8 +32,12 @@ docker run -it --rm -v "$(pwd)/images:/fibonacci/images" -e TERM=xterm fibonacci
 - Formato del archivo de configuración **tm_conf.json**:
     - Q: Conjunto de estados de la máquina.
     - Σ: Alfabeto de entrada (0 y 1).
-    - Γ: Alfabeto de la cinta (0, 1, B).
+    - Γ: Alfabeto de la cinta (0, 1, A, B).
     - S: Estado inicial.
     - b: Símbolo en blanco (B).
     - F: Estados finales.
     - transitions: Mapa de transiciones con la forma {Estado: {Símbolo: [Nuevo Estado, Nuevo Símbolo, Dirección]}}.
+
+## Diagrama de TM
+
+![Diagrama Circular de la TM](./images/turing_machine_circular.png)
