@@ -44,4 +44,4 @@ docker run -it --rm -v "$(pwd)/images:/fibonacci/images" -e TERM=xterm fibonacci
 
 ## Video Demostrativo de Ejecucion
 
-![Video]("https://youtu.be/ECH0pBYLDiY")
+[![Demo del Proyecto](https://img.youtube.com/vi/ECH0pBYLDiY/0.jpg)](https://youtu.be/ECH0pBYLDiY)
